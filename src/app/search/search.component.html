@@ -1,0 +1,29 @@
+<section>
+  <div class="search">
+    <input type="text" placeholder="GIF Search" [(ngModel)]="searchTerm" />
+    <button class="btn btn-primary" (click)="search()">Search</button>
+  </div>
+
+  <hr>
+  
+  <div class="result-panel">
+    <div
+      *ngFor="
+        let result of collection
+          | paginate: { itemsPerPage: 10, currentPage: currentPage }
+      "
+    >
+      <img
+        [src]="result.images.fixed_width.url"
+        [alt]="result.title"
+        height="300px"
+        width="300px"
+      />
+    </div>
+  </div>
+  
+  <hr>
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+</section>
+
